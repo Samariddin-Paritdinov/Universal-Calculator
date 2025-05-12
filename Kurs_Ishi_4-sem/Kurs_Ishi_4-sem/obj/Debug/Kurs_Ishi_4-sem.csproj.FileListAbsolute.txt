@@ -1,0 +1,11 @@
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\bin\Debug\Kurs_Ishi_4-sem.exe.config
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\bin\Debug\Kurs_Ishi_4-sem.exe
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\bin\Debug\Kurs_Ishi_4-sem.pdb
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4-sem.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4_sem.Form1.resources
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4_sem.Properties.Resources.resources
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4-sem.csproj.GenerateResource.Cache
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4-sem.exe
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4-sem.pdb
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\bin\Debug\NCalc.dll
+C:\Users\user\Documents\Visual Studio 2012\Projects\Kurs_Ishi_4-sem\Kurs_Ishi_4-sem\obj\Debug\Kurs_Ishi_4_sem.Form2.resources
