@@ -475,33 +475,95 @@ namespace Kurs_Ishi_4_sem
             }
         }
 
+
         public static string ConvertBase(string input, int fromBase, int toBase)
         {
             input = input.ToUpper().Trim();
             string[] parts = input.Split('.');
-            long integerPart = Convert.ToInt64(parts[0], fromBase);
-            string resultInt = Convert.ToString(integerPart, toBase).ToUpper();
 
+            // Butun qismini o'qib olish
+            long integerPart = ParseFromBase(parts[0], fromBase);
+            string resultInt = ConvertIntegerPart(integerPart, toBase);
+
+            // Kasr qismi yo‘q bo‘lsa
             if (parts.Length == 1)
                 return resultInt;
 
-            double fractional = 0;
+            // Kasr qismi
             string frac = parts[1];
+            double fractional = 0;
+
             for (int i = 0; i < frac.Length; i++)
             {
-                int digitValue = char.IsDigit(frac[i]) ? frac[i] - '0' : 10 + (frac[i] - 'A');
+                int digitValue = GetDigitValue(frac[i]);
+                if (digitValue >= fromBase)
+                    throw new ArgumentException("Noto‘g‘ri raqam kasr qismida");
                 fractional += digitValue / Math.Pow(fromBase, i + 1);
             }
+
+            // Kasrni yangi sanoq tizimiga o‘tkazish
             StringBuilder resultFrac = new StringBuilder();
-            int maxDigits = 10;
+            int maxDigits = 12;
+
             while (fractional > 0 && resultFrac.Length < maxDigits)
             {
                 fractional *= toBase;
-                int digit = (int)Math.Floor(fractional);
-                resultFrac.Append(digit < 10 ? (char)(digit + '0') : (char)(digit - 10 + 'A'));
+                int digit = (int)fractional;
+                resultFrac.Append(GetCharFromDigit(digit));
                 fractional -= digit;
             }
+
             return resultFrac.Length > 0 ? resultInt + "." + resultFrac.ToString() : resultInt;
+        }
+
+
+        private static int GetDigitValue(char c)
+        {
+            if (char.IsDigit(c))
+                return c - '0';
+            return char.ToUpper(c) - 'A' + 10;
+        }
+
+        private static char GetCharFromDigit(int digit)
+        {
+            return digit < 10 ? (char)(digit + '0') : (char)(digit - 10 + 'A');
+        }
+
+        private static long ParseFromBase(string input, int fromBase)
+        {
+            if (fromBase < 2 || fromBase > 36)
+                throw new ArgumentException("Sanoq tizimi 2–36 oralig‘ida bo‘lishi kerak.");
+
+            input = input.ToUpper();
+            string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            long result = 0;
+            foreach (char c in input)
+            {
+                int digit = chars.IndexOf(c);
+                if (digit < 0 || digit >= fromBase)
+                    throw new ArgumentException("Noto‘g‘ri raqam butun qismda");
+                result = result * fromBase + digit;
+            }
+            return result;
+        }
+
+        private static string ConvertIntegerPart(long value, int toBase)
+        {
+            if (toBase < 2 || toBase > 36)
+                throw new ArgumentException("Sanoq tizimi 2–36 oralig‘ida bo‘lishi kerak.");
+
+            string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder result = new StringBuilder();
+
+            do
+            {
+                int remainder = (int)(value % toBase);
+                result.Insert(0, chars[remainder]);
+                value /= toBase;
+            } while (value > 0);
+
+            return result.ToString();
         }
 
 
