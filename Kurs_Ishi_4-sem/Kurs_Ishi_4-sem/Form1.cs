@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Windows.Forms;
 using NCalc;
@@ -69,12 +69,13 @@ namespace Kurs_Ishi_4_sem
                 userExpression += name + "(" + input + degreeSuffix + ")";
                 calcExpression += computed;
 
-                txtResult.Text = computed.ToString();
+                txtResult.Text = ConvertBase(computed.ToString(), 10, currentBase);
                 lblHistory.Text = userExpression;
                 isNewEntry = true;
                 lastInputWasFunction = true;
             }
         }
+
 
         private void btnSin_Click(object sender, EventArgs e)
         {
@@ -435,9 +436,20 @@ namespace Kurs_Ishi_4_sem
 
         private void numericBase_ValueChanged(object sender, EventArgs e)
         {
+            int oldbase = currentBase;
             currentBase = (int)numericBase.Value;
             userExpression = "";
             calcExpression = "";
+            string txt = txtResult.Text;
+            if (txt != "" && txt != "0")
+            {
+                string natija = ConvertBase(txt.ToString(), oldbase, currentBase);
+                txtResult.Text = natija;
+                userExpression = natija;
+                lblHistory.Text = "";
+                isNewEntry = false;
+            }
+
             if (currentBase == 2) rbtBin.Checked = true; 
             if (currentBase == 8) rbtOct.Checked = true;
             if (currentBase == 10) rbtDec.Checked = true;
