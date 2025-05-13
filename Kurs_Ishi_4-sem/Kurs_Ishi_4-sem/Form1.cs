@@ -45,34 +45,36 @@ namespace Kurs_Ishi_4_sem
 
         private void AddScientificFunc(string name, Func<double, double> mathFunc)
         {
-            string input = txtResult.Text;
-            double inputVal = ConvertBaseToDecimal(input, currentBase);
-
-            string degreeSuffix = "";
-            if (isDegreeMode && (name == "Sin" || name == "Cos" || name == "Tan"))
+            if (!isNewEntry)
             {
-                inputVal = inputVal * Math.PI / 180;
-                degreeSuffix = "°";
+                string input = txtResult.Text;
+                double inputVal = ConvertBaseToDecimal(input, currentBase);
+
+                string degreeSuffix = "";
+                if (isDegreeMode && (name == "Sin" || name == "Cos" || name == "Tan"))
+                {
+                    inputVal = inputVal * Math.PI / 180;
+                    degreeSuffix = "°";
+                }
+
+                double computed = mathFunc(inputVal);
+                // agar juda kichik qiymat chiqsa uni 0 deb olish maqsad sin(180) dan juda kichik son chiqadi shuni 0 deb olib ketish
+                if (Math.Abs(computed) < 1e-6) computed = 0;
+
+
+                // Oldingi sonni olib tashlash
+                if (userExpression.EndsWith(input))
+                    userExpression = userExpression.Substring(0, userExpression.Length - input.Length);
+
+                userExpression += name + "(" + input + degreeSuffix + ")";
+                calcExpression += computed;
+
+                txtResult.Text = computed.ToString();
+                lblHistory.Text = userExpression;
+                isNewEntry = true;
+                lastInputWasFunction = true;
             }
-
-            double computed = mathFunc(inputVal);
-            // agar juda kichik qiymat chiqsa uni 0 deb olish maqsad sin(180) dan juda kichik son chiqadi shuni 0 deb olib ketish
-            if (Math.Abs(computed) < 1e-6)  computed = 0;
-
-
-            // Oldingi sonni olib tashlash
-            if (userExpression.EndsWith(input))
-                userExpression = userExpression.Substring(0, userExpression.Length - input.Length);
-
-            userExpression += name + "(" + input + degreeSuffix + ")";
-            calcExpression += computed;
-
-            txtResult.Text = computed.ToString();
-            lblHistory.Text = userExpression;
-            isNewEntry = true;
-            lastInputWasFunction = true;
         }
-
 
         private void btnSin_Click(object sender, EventArgs e)
         {
