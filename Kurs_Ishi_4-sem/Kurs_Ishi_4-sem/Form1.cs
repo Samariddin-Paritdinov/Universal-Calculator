@@ -533,7 +533,11 @@ namespace Kurs_Ishi_4_sem
         private static long ParseFromBase(string input, int fromBase)
         {
             if (fromBase < 2 || fromBase > 16)
-                throw new ArgumentException("Sanoq tizimi 2–16 oralig‘ida bo‘lishi kerak.");
+                throw new ArgumentException("Sanoq tizimi 2-16 oralig‘ida bo‘lishi kerak.");
+
+            bool isNegative = input.StartsWith("-");
+            if (isNegative)
+                input = input.Substring(1); // '-' ni olib tashlash
 
             input = input.ToUpper();
             string chars = "0123456789ABCDEF";
@@ -544,10 +548,13 @@ namespace Kurs_Ishi_4_sem
                 int digit = chars.IndexOf(c);
                 if (digit < 0 || digit >= fromBase)
                     throw new ArgumentException("Noto‘g‘ri raqam butun qismda");
+
                 result = result * fromBase + digit;
             }
-            return result;
+
+            return isNegative ? -result : result;
         }
+
 
 
         private static string ConvertIntegerPart(long value, int toBase)
