@@ -529,13 +529,14 @@ namespace Kurs_Ishi_4_sem
             return digit < 10 ? (char)(digit + '0') : (char)(digit - 10 + 'A');
         }
 
+
         private static long ParseFromBase(string input, int fromBase)
         {
-            if (fromBase < 2 || fromBase > 36)
-                throw new ArgumentException("Sanoq tizimi 2–36 oralig‘ida bo‘lishi kerak.");
+            if (fromBase < 2 || fromBase > 16)
+                throw new ArgumentException("Sanoq tizimi 2–16 oralig‘ida bo‘lishi kerak.");
 
             input = input.ToUpper();
-            string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string chars = "0123456789ABCDEF";
 
             long result = 0;
             foreach (char c in input)
@@ -547,6 +548,7 @@ namespace Kurs_Ishi_4_sem
             }
             return result;
         }
+
 
         private static string ConvertIntegerPart(long value, int toBase)
         {
@@ -571,7 +573,7 @@ namespace Kurs_Ishi_4_sem
         {
             input = input.ToUpper().Trim();
             string[] parts = input.Split('.');
-            double result = Convert.ToInt64(parts[0], fromBase);
+            double result = Convert.ToDouble(ConvertBase(parts[0], fromBase, 10));
 
             if (parts.Length == 1)
                 return result;
