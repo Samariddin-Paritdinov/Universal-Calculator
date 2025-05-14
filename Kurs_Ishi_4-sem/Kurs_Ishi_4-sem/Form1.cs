@@ -397,34 +397,49 @@ namespace Kurs_Ishi_4_sem
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            // Faqat raqamlar uchun
             if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
             {
                 int key = e.KeyCode - Keys.D0;
-                AddInput(key.ToString());
-                return;
-            }
-            if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
-            {
-                int key = e.KeyCode - Keys.NumPad0;
-                AddInput(key.ToString());
-                return;
-            }
-            if (e.KeyCode >= Keys.A && e.KeyCode <= Keys.F)
-            {
-                char letter = (char)('A' + (e.KeyCode - Keys.A));
-                AddInput(letter.ToString());
+                if (key < currentBase)
+                    AddInput(key.ToString());
                 return;
             }
 
+            // NumPad raqamlar
+            if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            {
+                int key = e.KeyCode - Keys.NumPad0;
+                if (key < currentBase)
+                    AddInput(key.ToString());
+                return;
+            }
+
+            // A-F harflar (faqat 11 dan katta sanoq tizimi uchun)
+            if (e.KeyCode >= Keys.A && e.KeyCode <= Keys.F && currentBase > 10)
+            {
+                int digit = 10 + (e.KeyCode - Keys.A);
+                if (digit < currentBase)
+                {
+                    char letter = (char)('A' + (e.KeyCode - Keys.A));
+                    AddInput(letter.ToString());
+                }
+                return;
+            }
+
+            // Asosiy klavishlar: orqaga o‘chirish, natija, tozalash
             if (e.KeyCode == Keys.Back) btnBackspace.PerformClick();
             if (e.KeyCode == Keys.Enter) btnEqual.PerformClick();
             if (e.KeyCode == Keys.Escape) btnClear.PerformClick();
+
+            // Nuqta va arifmetik amallar
             if (e.KeyCode == Keys.OemPeriod || e.KeyCode == Keys.Decimal) btnDot.PerformClick();
             if (e.KeyCode == Keys.Add) btnAdd.PerformClick();
             if (e.KeyCode == Keys.Subtract) btnSub.PerformClick();
             if (e.KeyCode == Keys.Multiply) btnMul.PerformClick();
             if (e.KeyCode == Keys.Divide) btnDiv.PerformClick();
         }
+
 
         private void CheckedChanged(object sender, EventArgs e)
         {
