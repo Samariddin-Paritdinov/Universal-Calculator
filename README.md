@@ -1,7 +1,7 @@
 # Universal-Calculator
 
 Ushbu dastur TMI23-03 Maxsus Guruhi talabasi PARITDINOV SAMARIDDIN tomonidan ALGORITMIK TILLAR VA DASTURLASH fanidan kurs ishi uchun tayyorlangan.
-Dastur C# dasturlash  tilida Microsoft visual studio 2012 muhitida tayyorlangan
+Dastur C# tili va Windows Forms texnologiyasi asosida ishlab chiqilgan bo‘lib, sodda, tushunarli va qulay interfeysga ega. Bunda foydalanuvchi hech qanday texnik bilimga ega bo‘lmagan holda ham dasturdan samarali foydalanishi mumkin.
 
 # Kalkulyatorning asosiy imkoniyatlari:
 •	Har xil sanoq sistemalarida ishlash;
