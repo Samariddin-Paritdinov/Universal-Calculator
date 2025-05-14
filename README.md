@@ -3,7 +3,7 @@
 Ushbu dastur TMI23-03 Maxsus Guruhi talabasi PARITDINOV SAMARIDDIN tomonidan ALGORITMIK TILLAR VA DASTURLASH fanidan kurs ishi uchun tayyorlangan.
 Dastur C# dasturlash  tilida Microsoft visual studio 2012 muhitida tayyorlangan
 
-#Kalkulyatorning asosiy imkoniyatlari:
+# Kalkulyatorning asosiy imkoniyatlari:
 •	Har xil sanoq sistemalarida ishlash;
 •	Trigonometrik (sin, cos, tg, ctg) va logarifmik (log, ln, lg) funksiyalarni hisoblash;
 •	Modul, ildiz, daraja kabi matematik amallarni bajarish;
